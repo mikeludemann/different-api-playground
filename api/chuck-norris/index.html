@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>API - chucknorris.io</title>
+	</head>
+	<body>
+		<div id="cn"></div>
+		<script>
+			const cn = document.getElementById("cn");
+
+			fetch('https://api.chucknorris.io/jokes/random')
+				.then(function(response) {
+					return response.json();
+				})
+				.then(function(data) {
+					cn.innerHTML = data.value;
+				})
+				.catch(function(error) {
+					console.error(error);
+				});
+		</script>
+	</body>
+</html>

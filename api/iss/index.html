@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>API - ISS</title>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	</head>
+	<body>
+		<div id="cologne">
+			<h1>Location: Cologne</h1>
+			<div id="iss-data"></div>
+		</div>
+		<hr>
+		<div id="iss-data-people">
+			<div id="count-space-members"></div>
+			<br/>
+			<div id="name-space-members"></div>
+		</div>
+		<script>
+			$.getJSON('http://api.open-notify.org/iss-pass.json?lat=50.935173&lon=-6.953101&alt=20&n=5&callback=?', function(data) {
+				data.response.forEach(function (d) {
+					var date = new Date(d.risetime * 1000);
+						$('#iss-data').append('<div>' + date.toString() + '</div><br/>');
+				});
+			});
+
+			$.getJSON('http://api.open-notify.org/astros.json?callback=?', function(data) {
+				var number = data.number;
+				$('#count-space-members').html(number);
+				data.people.forEach(function (d) {
+					$('#name-space-members').append('<div>' + d.name + '</div>');
+				});
+			});
+		</script>
+	</body>
+</html>

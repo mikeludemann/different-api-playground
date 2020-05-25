@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>API - Star Wars</title>
+	</head>
+	<body>
+		<div id="sw"></div>
+		<hr>
+		<div id="sw2"></div>
+		<script>
+			const sw = document.getElementById("sw");
+			const sw2 = document.getElementById("sw2");
+
+			fetch('https://swapi.dev/api/people/')
+				.then(function(response) {
+					return response.json();
+				})
+				.then(function(data) {
+					for(var i = 0; i < data.results.length; i++){
+						sw.innerHTML += data.results[i].name + "<br/>";
+					}
+				})
+				.catch(function(error) {
+					console.error(error);
+				});
+
+			fetch('https://swapi.dev/api/starships/')
+				.then(function(response) {
+					return response.json();
+				})
+				.then(function(data) {
+					for(var i = 0; i < data.results.length; i++){
+						sw2.innerHTML += data.results[i].name + "<br/>";
+					}
+				})
+				.catch(function(error) {
+					console.error(error);
+				});
+		</script>
+	</body>
+</html>
